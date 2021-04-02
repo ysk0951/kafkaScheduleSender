@@ -4,13 +4,9 @@ require('events').EventEmitter.defaultMaxListeners = 0
  
 
 const clientOption = {
-    kafkaHost : "192.168.124.236:9092"
+    kafkaHost : "192.168.124.244:29092"
 };
-
-
-
 const kafka = require('kafka-node');
-
 var randomNum = {};
  
 randomNum.random = function(n1, n2) {
@@ -606,12 +602,14 @@ var makeChunk = function(size){
 let client = new kafka.KafkaClient(clientOption),
     producer = new  kafka.Producer(client),
     payloads = [
-        { topic: 'asset_rcv_event', messages: [], partition: 0 }      
+        { topic: 'woori_ai_fds', messages: [], partition: 0 }      
     ];
-
+// console.log("producer",producer);
 var sendKafa = function(payloads){
+    // console.log("Before Connect",payloads);
     return new Promise((resolve, reject)=>{
         producer.send(payloads, function (err, data) {
+            console.log(err,data);
             if(err) reject(err);
             else resolve(data);
         });
@@ -625,8 +623,8 @@ var sleep = function(ms){
     });
 };
 
-var chunkSize = 10;
-var n = 200;
+var chunkSize = 1;
+var n = 1;
 var tpsArr = [];
 var run = async function(){
     for(var i=0;i<n;i++){
@@ -637,7 +635,7 @@ var run = async function(){
         var tps = Math.floor(chunkSize/(diff/1000));
         console.log(i, "send", tps, "tps");
         tpsArr.push(tps);
-        console.log( payloads[0].messages);
+        console.log( payloads[0]);
         // await sleep(1000);
     }
 };

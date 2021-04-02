@@ -1,0 +1,8 @@
+{
+    "config" : {
+        "topic" : "woori_ai_fds",
+        "kafkaHost" : "localhost:9092",
+        "chunkSize" : 1,
+        "trCount" : 1
+    }
+}

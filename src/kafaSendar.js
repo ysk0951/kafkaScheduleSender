@@ -4,7 +4,7 @@ require('events').EventEmitter.defaultMaxListeners = 0
  
 
 const clientOption = {
-    kafkaHost : "192.168.124.244:29092"
+    kafkaHost : "localhost:9092"
 };
 const kafka = require('kafka-node');
 var randomNum = {};
@@ -573,7 +573,6 @@ var makeMsg = function(timestamp){
         '@id' :makeUUID(),
         '@timestamp' : tz,
         "amt" :getAmt,
-        '@index_day' : indexDay,
         "@index" :"test",
         "CHANNEL_CODE" :randomArray(channel_code),
         "outBankCode" : getOutBankCode,
@@ -636,7 +635,6 @@ var run = async function(){
         console.log(i, "send", tps, "tps");
         tpsArr.push(tps);
         console.log( payloads[0]);
-        // await sleep(1000);
     }
 };
 
@@ -645,6 +643,7 @@ run().then(()=>{
     console.log("tps min", _.min(tpsArr), "tps");
     console.log("tps max", _.max(tpsArr), "tps");
     client.close(()=>{
+        console.log(now);
         console.log("exit...");
     });
 }).catch((e)=>{
@@ -652,3 +651,9 @@ run().then(()=>{
 });
  
 
+//####################    Schedule    ######################
+const schedule = require('node-schedule');
+const job = schedule.scheduleJob('*/10 * * * * *', function(){
+    let now = new Date();
+    console.log(now);
+});

@@ -1,7 +1,6 @@
 let moment = require('moment');
 var _ = require('lodash');
 require('events').EventEmitter.defaultMaxListeners = 0
- 
 
 const clientOption = {
     kafkaHost : "localhost:9092"
@@ -603,9 +602,7 @@ let client = new kafka.KafkaClient(clientOption),
     payloads = [
         { topic: 'woori_ai_fds', messages: [], partition: 0 }      
     ];
-// console.log("producer",producer);
 var sendKafa = function(payloads){
-    // console.log("Before Connect",payloads);
     return new Promise((resolve, reject)=>{
         producer.send(payloads, function (err, data) {
             console.log(err,data);
@@ -638,22 +635,19 @@ var run = async function(){
     }
 };
 
-run().then(()=>{
-    console.log("tps average", _.sum(tpsArr)/tpsArr.length, "tps");
-    console.log("tps min", _.min(tpsArr), "tps");
-    console.log("tps max", _.max(tpsArr), "tps");
-    client.close(()=>{
-        console.log(now);
-        console.log("exit...");
-    });
-}).catch((e)=>{
-    console.log(e);
-});
- 
-
 //####################    Schedule    ######################
 const schedule = require('node-schedule');
-const job = schedule.scheduleJob('*/10 * * * * *', function(){
-    let now = new Date();
-    console.log(now);
+const job = schedule.scheduleJob('* * * * * *', function(){
+    run().then(()=>{
+        console.log("tps average", _.sum(tpsArr)/tpsArr.length, "tps");
+        console.log("tps min", _.min(tpsArr), "tps");
+        console.log("tps max", _.max(tpsArr), "tps");
+    }).catch((e)=>{
+        console.log(e);
+    });
+});
+
+client.close(()=>{
+    console.log("exit...");
+    console.log(producer.ready)
 });

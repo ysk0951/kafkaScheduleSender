@@ -60,19 +60,20 @@ let makeMsg = function(timestamp){
     let obj = {
         '@id' :makeUUID(),
         '@timestamp' : tz,
-        "amt" :getAmt,
-        "@index" :"test",
-        "CHANNEL_CODE" :randomArray(jsonData.channel_code),
-        "outBankCode" : getOutBankCode,
-        "inBankCode" :getInBankCode,
-        "inAcctNo" : randomNum.authNo(13),
-        "outAcctNo" :getAccountNo,
-        createStr :jsonData.getCustNo[getAccountNo],
-        CSAC_NAME:jsonData.getCustName[getAccountNo],
-	tradeCodeName : gettradeCode_kor,
-	IN_CSAC_NAME : jsonData.getCustName[randomArray(jsonData.accountList)],
-        AFTR_amt: randomNum.authNo(generateRandom(5,7)),
-	BETR_amt :randomNum.authNo(generateRandom(5,7))
+        // "amt" :getAmt,
+        // "@index" :"test",
+        "CHECK_STATUS" : "N"
+        // "CHANNEL_CODE": randomArray(jsonData.channel_code),
+        // "outBankCode": getOutBankCode,
+        // "inBankCode": getInBankCode,
+        // "inAcctNo": randomNum.authNo(13),
+        // "outAcctNo": getAccountNo,
+        // createStr: jsonData.getCustNo[getAccountNo],
+        // CSAC_NAME: jsonData.getCustName[getAccountNo],
+        // tradeCodeName: gettradeCode_kor,
+        // IN_CSAC_NAME: jsonData.getCustName[randomArray(jsonData.accountList)],
+        // AFTR_amt: randomNum.authNo(generateRandom(5, 7)),
+        // BETR_amt: randomNum.authNo(generateRandom(5, 7))
     }
     return obj;
 }

@@ -41,7 +41,7 @@ let randomArray = function(arr){
 /*  #########################################################
     ###########              Make Data            ###########
     #########################################################   */
-const jsonFile = fs.readFileSync('./data.json', 'utf8');
+const jsonFile = fs.readFileSync('./config/data.json', 'utf8');
 const jsonData = JSON.parse(jsonFile);
 let makeMsg = function(timestamp){
     let indexDay=moment(timestamp).format("YYYY.MM");
@@ -103,7 +103,7 @@ let makeChunk = function(size){
 /*  #########################################################
     ###########          KAFAKA  SETTING          ###########
     #########################################################   */
-const kafkaJsonFile = fs.readFileSync('./kafkaConfig.json', 'utf8');
+const kafkaJsonFile = fs.readFileSync('../config/kafkaConfig.json', 'utf8');
 const kafkaJsonData = JSON.parse(kafkaJsonFile);    
 let client = new kafka.KafkaClient(kafkaJsonData.config.kafkaHost),
 producer = new  kafka.Producer(client),

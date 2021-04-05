@@ -58,7 +58,7 @@ let makeMsg = function(timestamp){
     let gettradeCode=randomArray(jsonData.tradeCode);
     let gettradeCode_kor=jsonData.tradeCode_kor[gettradeCode];
     let obj = {
-        '@id' :makeUUID(),
+        '@id' :makeUUID(), // Incident_id
         '@timestamp' : tz,
         // "amt" :getAmt,
         // "@index" :"test",

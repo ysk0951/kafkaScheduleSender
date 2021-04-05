@@ -76,7 +76,7 @@ let makeMsg = function(timestamp){
         "LEVEL_NAME" : "test",
         "LEVEL_CODE " : "test",
         "RELEASE_YN  " : "N"
-        // "CHANNEL_CODE": randomArray(jsonData.channel_code),
+        // "CHANNEL_CODE": randomArray(jsognData.channel_code),
         // "outBankCode": getOutBankCode,
         // "inBankCode": getInBankCode,
         // "inAcctNo": randomNum.authNo(13),

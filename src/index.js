@@ -4,6 +4,7 @@ const _ = require('lodash');
 const clientOption = {kafkaHost : "localhost:9092"};
 const kafka = require('kafka-node');
 const schedule = require('node-schedule');
+const maria = require('../module/mariaModule')
 require('events').EventEmitter.defaultMaxListeners = 0
 
 /*  #########################################################
@@ -41,7 +42,7 @@ let randomArray = function(arr){
 /*  #########################################################
     ###########              Make Data            ###########
     #########################################################   */
-const jsonFile = fs.readFileSync('./config/data.json', 'utf8');
+const jsonFile = fs.readFileSync('../config/data.json', 'utf8');
 const jsonData = JSON.parse(jsonFile);
 let makeMsg = function(timestamp){
     let indexDay=moment(timestamp).format("YYYY.MM");
@@ -97,7 +98,6 @@ let makeChunk = function(size){
         now.add(Math.floor(Math.random()*90)+10, "ms");
         ret.push(JSON.stringify(makeMsg(now.valueOf())));
     }
-    console.log("makeChunk",ret);
     return ret;
 };
 /*  #########################################################
@@ -148,9 +148,9 @@ let run = async function(){
 /*  #########################################################
     ###########          MariaDB in Docker        ###########
     #########################################################   */
-    let marridDBInster = function(payloads){
-
-    }
+    maria.query('select * from TF_ACTION',function(err,res){
+        console.log(res);
+    })
 
 /*  #########################################################
     ###########          schedule running         ###########

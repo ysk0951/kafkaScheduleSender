@@ -4,7 +4,7 @@ const _ = require('lodash');
 const clientOption = {kafkaHost : "localhost:9092"};
 const kafka = require('kafka-node');
 const schedule = require('node-schedule');
-const maria = require('../module/mariaModule')
+// const maria = require('../module/mariaModule')
 require('events').EventEmitter.defaultMaxListeners = 0
 
 /*  #########################################################
@@ -140,28 +140,25 @@ let run = async function(){
         console.log(i, "send", tps, "tps");
         tpsArr.push(tps);
         console.log( payloads[0]);
-        //incident
-        marridDBInster(payloads);
     }
 };
-
-/*  #########################################################
-    ###########          MariaDB in Docker        ###########
-    #########################################################   */
-    maria.query('select * from TF_ACTION',function(err,res){
-        console.log(res);
-    })
-
 /*  #########################################################
     ###########          schedule running         ###########
     #########################################################   */
 const job = schedule.scheduleJob('* * * * * *', function(){
     run().then(()=>{
+        var obj = payloads[0].messages;
+
+        // DataDB Insert Case))
+        // maria.query('',function(err,res){
+
+        // })
         console.log("tps average", _.sum(tpsArr)/tpsArr.length, "tps");
         console.log("tps min", _.min(tpsArr), "tps");
         console.log("tps max", _.max(tpsArr), "tps");
     }).catch((e)=>{
-        console.log(e);
+        client.close();
+        maria.close();
     });
 });
 

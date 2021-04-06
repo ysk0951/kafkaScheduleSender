@@ -25,12 +25,14 @@ class MariaDBCalss{
   }
 }
 let maria = new MariaDBCalss();
-module.exports = new MariaDBCalss();
+maria.close();
+// module.exports = new MariaDBCalss();
 
 //ex
-// maria.query('select * from TF_ACTION',function(err,res,field){
-//   console.log(err,res,field);
-// });
-// maria.close();
+//  maria.query('select * from TF_ACTION',function(err,res,field){
+//    console.log(err,res);
+//    console.log(res.length);
+//  });
+//  maria.close();
 
 

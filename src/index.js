@@ -59,24 +59,26 @@ let makeMsg = function(timestamp){
     let gettradeCode=randomArray(jsonData.tradeCode);
     let gettradeCode_kor=jsonData.tradeCode_kor[gettradeCode];
     let obj = {
-        '@id' :makeUUID(), // Incident_id
-        '@timestamp' : tz,
-        // "amt" :getAmt,
-        // "@index" :"test",
-        "CHECK_STATUS" : "N",
-        "COUNT " : 1 ,
-        "DETECT_DTTM_LAST" : tz,
-        "ACTION_ID": makeUUID(),
-        "DETECT_DTTM" : moment(moment(new Date().valueOf()+99999),"korea/Asia").utc().format(),
-        "BASIS_FIELD" : "test",
-        "BASIS_VALUE " : "test",
-        "RULE_NAME " : "test",
-        "RULE_NO" : 1,
-        "ACTION_NAME" : "test",
-        "ACTION_CODE"  : "test",
-        "LEVEL_NAME" : "test",
-        "LEVEL_CODE " : "test",
-        "RELEASE_YN  " : "N"
+        "remoteIp" : "192.168.124.67",
+        "userId" : "interezen"
+        // '@id' :makeUUID(), // Incident_id
+        // '@timestamp' : tz,
+        // // "amt" :getAmt,
+        // // "@index" :"test",
+        // "CHECK_STATUS" : "N",
+        // "COUNT " : 1 ,
+        // "DETECT_DTTM_LAST" : tz,
+        // "ACTION_ID": makeUUID(),
+        // "DETECT_DTTM" : moment(moment(new Date().valueOf()+99999),"korea/Asia").utc().format(),
+        // "BASIS_FIELD" : "test",
+        // "BASIS_VALUE " : "test",
+        // "RULE_NAME " : "test",
+        // "RULE_NO" : 1,
+        // "ACTION_NAME" : "test",
+        // "ACTION_CODE"  : "test",
+        // "LEVEL_NAME" : "test",
+        // "LEVEL_CODE " : "test",
+        // "RELEASE_YN  " : "N"
         // "CHANNEL_CODE": randomArray(jsognData.channel_code),
         // "outBankCode": getOutBankCode,
         // "inBankCode": getInBankCode,

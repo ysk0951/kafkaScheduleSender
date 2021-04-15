@@ -58,9 +58,15 @@ let makeMsg = function(timestamp){
     let getAccountNo = randomArray(jsonData.accountList);
     let gettradeCode=randomArray(jsonData.tradeCode);
     let gettradeCode_kor=jsonData.tradeCode_kor[gettradeCode];
+    let timestampCtrl = moment().subtract(1, 'days').toISOString();
+    let getEncodingTest = randomArray(jsonData.encodingTest);
     let obj = {
         "remoteIp" : "192.168.124.67",
-        "userId" : "interezen"
+        "userId" : "interezen",
+        "userName" : myName,
+        "@index_day" : "2021.04.14",
+        "@timestamp" : timestampCtrl,
+        "encodingTest" : getEncodingTest
         // '@id' :makeUUID(), // Incident_id
         // '@timestamp' : tz,
         // // "amt" :getAmt,
@@ -160,7 +166,7 @@ const job = schedule.scheduleJob('* * * * * *', function(){
         console.log("tps max", _.max(tpsArr), "tps");
     }).catch((e)=>{
         client.close();
-        maria.close();
+        // maria.close();
     });
 });
 

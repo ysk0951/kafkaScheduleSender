@@ -59,13 +59,13 @@ let makeMsg = function(timestamp){
     let gettradeCode=randomArray(jsonData.tradeCode);
     let gettradeCode_kor=jsonData.tradeCode_kor[gettradeCode];
     let timestampCtrl = moment().subtract(1, 'days').toISOString();
-    let getEncodingTest = randomArray(jsonData.encodingTest);
+    let getEncodingTest = randomArray(jsonData.encodingTest)+Math.floor(Math.random() * 10)+randomArray(jsonData.encodingTest);
     let obj = {
         "remoteIp" : "192.168.124.67",
         "userId" : "interezen",
         "userName" : myName,
-        "@index_day" : "2021.04.14",
-        "@timestamp" : timestampCtrl,
+        // "@index_day" : "2021.04.17",
+        //"@timestamp" : timestampCtrl,
         "encodingTest" : getEncodingTest
         // '@id' :makeUUID(), // Incident_id
         // '@timestamp' : tz,

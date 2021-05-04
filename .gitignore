@@ -1,7 +1,5 @@
 .DS_Store
 #config
-*.json
-config
 
 # local env files
 .env.local

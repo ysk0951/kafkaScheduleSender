@@ -1,0 +1,8 @@
+{
+    "config" : {
+        "topic" : "audit",
+        "kafkaHost" : "localhost:9092",
+        "chunkSize" : 1,
+        "trCount" : 1
+    }
+}

@@ -1,11 +1,16 @@
+/*
+* require Block
+* Refer Notice File about LICENSE
+* (https://github.com/ysk0951/kafkaScheduleSender/blob/master/NOTICE)
+*/
 const moment = require('moment');
 const fs = require('fs');
 const _ = require('lodash');
-const clientOption = {kafkaHost : "localhost:9092"};
 const kafka = require('kafka-node');
 const schedule = require('node-schedule');
-// const maria = require('../module/mariaModule')
 require('events').EventEmitter.defaultMaxListeners = 0
+// const maria = require('../module/mariaModule')
+const clientOption = {kafkaHost : "localhost:9092"};
 
 /*  #########################################################
     ###########               Function            ###########

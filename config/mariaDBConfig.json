@@ -1,0 +1,10 @@
+{
+    "config" : {
+      "DBHost" : "0.0.0.0",
+      "DBUser" : "root",
+      "DBPort" : "23306",
+      "DBPass" : "",
+      "database" : "",
+      "ConnectionLimit" : 1
+    }
+}

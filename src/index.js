@@ -69,12 +69,12 @@ let makeMsg = function(timestamp){
         "remoteIp" : "192.168.124.67",
         "userId" : "interezen",
         "userName" : myName,
-        // "@index_day" : "2021.04.17",
-        //"@timestamp" : timestampCtrl,
-        "encodingTest" : getEncodingTest
-        // '@id' :makeUUID(), // Incident_id
-        // '@timestamp' : tz,
-        // // "amt" :getAmt,
+        "@index_day" : "2021.05.04",
+        "@timestamp" : timestampCtrl,
+        "encodingTest" : getEncodingTest,
+        '@timestamp' : tz,
+	"@index":"wooritest"
+        // "amt" :getAmt,
         // // "@index" :"test",
         // "CHECK_STATUS" : "N",
         // "COUNT " : 1 ,
@@ -143,16 +143,25 @@ let sleep = function(ms){
 let chunkSize = kafkaJsonData.config.chunkSize;
 let n = kafkaJsonData.config.trCount;
 let tpsArr = [];
+let accumulate = 0;
+let breakPoint = kafkaJsonData.config.breakPoint;
 let run = async function(){
-    for(let i=0;i<n;i++){
-        let now = moment().valueOf();
-        payloads[0].messages=makeChunk(chunkSize);
-        let ret = await sendKafa(payloads);
-        let diff = moment().valueOf()-now;
-        let tps = Math.floor(chunkSize/(diff/1000));
-        console.log(i, "send", tps, "tps");
-        tpsArr.push(tps);
-        console.log( payloads[0]);
+    if (accumulate >= breakPoint) {
+        client.close();
+        job.cancel(schedule);
+        console.log("exit...",accumulate,"/",breakPoint);
+    } else {
+        for(let i=0;i<n;i++){
+            let now = moment().valueOf();
+            payloads[0].messages=makeChunk(chunkSize);
+            let ret = await sendKafa(payloads);
+            let diff = moment().valueOf()-now;
+            let tps = Math.floor(chunkSize/(diff/1000));
+            accumulate ++ ;
+            console.log(i, "send", tps, "tps");
+            tpsArr.push(tps);
+            console.log( payloads[0]);
+        }
     }
 };
 /*  #########################################################
@@ -166,6 +175,7 @@ const job = schedule.scheduleJob('* * * * * *', function(){
         // maria.query('',function(err,res){
 
         // })
+        console.log("Accumulate : ",accumulate,"breakPoint : ",breakPoint);
         console.log("tps average", _.sum(tpsArr)/tpsArr.length, "tps");
         console.log("tps min", _.min(tpsArr), "tps");
         console.log("tps max", _.max(tpsArr), "tps");

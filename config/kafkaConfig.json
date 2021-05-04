@@ -1,8 +1,9 @@
 {
     "config" : {
-        "topic" : "audit",
+        "topic" : "wooritest",
         "kafkaHost" : "localhost:9092",
         "chunkSize" : 1,
-        "trCount" : 1
+        "trCount" : 500,
+	    "breakPoint" : 15000
     }
 }

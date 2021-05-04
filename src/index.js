@@ -65,15 +65,16 @@ let makeMsg = function(timestamp){
     let gettradeCode_kor=jsonData.tradeCode_kor[gettradeCode];
     let timestampCtrl = moment().subtract(1, 'days').toISOString();
     let getEncodingTest = randomArray(jsonData.encodingTest)+Math.floor(Math.random() * 10)+randomArray(jsonData.encodingTest);
+    let randomUserId = randomArray(jsonData.randomUserId);
     let obj = {
         "remoteIp" : "192.168.124.67",
-        "userId" : "interezen",
+        "userId" : randomUserId,
         "userName" : myName,
-        "@index_day" : "2021.05.04",
+        "@index_day" : "2021.05.03",
         "@timestamp" : timestampCtrl,
-        "encodingTest" : getEncodingTest,
-        '@timestamp' : tz,
-	"@index":"wooritest"
+        //"encodingTest" : getEncodingTest,
+        //'@timestamp' : tz,
+	//"@index":"wooritest"
         // "amt" :getAmt,
         // // "@index" :"test",
         // "CHECK_STATUS" : "N",

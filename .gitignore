@@ -59,7 +59,6 @@ build/Release
 *.njsproj
 *.sln
 *.sw*
-config/kafkaConfig.json
 config/kafkaConfig_back.json
 config/kafkaConfig.json
-config/kafkaConfig.json
+.gitignore

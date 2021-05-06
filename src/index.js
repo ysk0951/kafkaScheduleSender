@@ -120,12 +120,11 @@ let makeChunk = function(size){
     #########################################################   */
 const kafkaJsonFile = fs.readFileSync(path.resolve(__dirname,'../config/kafkaConfig.json'), 'utf8');
 const kafkaJsonData = JSON.parse(kafkaJsonFile);    
-let client = new kafka.KafkaClient(kafkaJsonData.config.kafkaHost);
+let client = new kafka.KafkaClient({kafkaHost : kafkaJsonData.config.kafkaHost});
 let producer = new  kafka.Producer(client);
 let payloads = [
     { topic: kafkaJsonData.config.topic, messages: [], partition: 0 }      
 ];
-console.log(producer,payloads,client)
 let sendKafa = function(payloads){
     return new Promise((resolve, reject)=>{
         producer.send(payloads, function (err, data) {

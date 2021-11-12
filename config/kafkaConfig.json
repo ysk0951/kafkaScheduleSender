@@ -1,9 +1,9 @@
 {
     "config" : {
-        "topic" : "wooritest",
-        "kafkaHost" : "localhost:9092",
+        "topic" : "test",
+        "kafkaHost" : "192.168.124.236:1146",
         "chunkSize" : 1,
-        "trCount" : 500,
+        "trCount" : 500,   
 	    "breakPoint" : 15000
     }
 }

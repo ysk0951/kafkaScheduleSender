@@ -51,7 +51,7 @@ let randomArray = function(arr){
 const jsonFile = fs.readFileSync(path.resolve(__dirname,'../config/data.json'), 'utf8');
 const jsonData = JSON.parse(jsonFile);
 let makeMsg = function(timestamp){
-    let indexDay=moment(timestamp).format("YYYY.MM");
+    let indexDay=moment(timestamp).format("YYYY.MM.DD");
     let tz = moment(moment(new Date().valueOf()),"korea/Asia").utc().format();
     let wip = randomArray(jsonData.ipList);
     let NAT_IP = randomArray(jsonData.ipList);
@@ -69,13 +69,14 @@ let makeMsg = function(timestamp){
     let randomUserId = randomArray(jsonData.randomUserId);
     let obj = {
         "remoteIp" : "192.168.124.67",
-        "userId" : randomUserId,
+        "userId" : Math.floor(Math.random()*100000),
         "userName" : myName,
-        "@index_day" : "2021.05.03",
-        "@timestamp" : timestampCtrl,
+        // "@index_day" : "2021.05.03",
+        // "@timestamp" : timestampCtrl,
         //"encodingTest" : getEncodingTest,
-        //'@timestamp' : tz,
-	//"@index":"wooritest"
+        'auditMessage' : "A,B",
+        '@timestamp' : tz,
+	"@index":"test"
         // "amt" :getAmt,
         // // "@index" :"test",
         // "CHECK_STATUS" : "N",
